@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Опитування</title>
+</head>
+<body>
+<form id="surveyForm" class="forms_container">
+<label for="animal">Оберіть тваринку яку хочете купити:</label>
+<select id="animal" name="animal">
+    <option value="cat">Котики</option>
+    <option value="dog">Собачки</option>
+    <option value="parrot">Папуги</option>
+</select>
+<br><br>
+
+<fieldset name="age" id="age">
+    <legend>Оберіть свік тваринки:</legend>
+    <label><input type="radio" name="condition" value="young">До 4 місяців</label><br>
+    <label><input type="radio" name="condition" value="old">Від 4 місяців</label><br>
+</fieldset>
+<br><br>
+
+<label for="price">Вкажіть ціну:</label>
+<input type="number" id="price" name="price">
+<br><br>
+
+<label for="purchaseDate">Вкажіть дату покупки тваринки:</label>
+<input type="date" id="purchaseDate" name="purchaseDate">
+<br><br>
+
+<label for="number">Вкажіть чи це перша ваша тваринка:</label>
+<select id="number" name="number">
+    <option value="first">Так</option>
+    <option value="not_first">Ні</option>
+</select>
+<br><br>
+
+<label for="courses">Вкажіть чи потрібні курси по догляду за тваринкою:</label>
+<select id="courses" name="courses">
+    <option value="1time">Так, 1 раз</option>
+    <option value="5times">Так, і 5 разів</option>
+    <option value="0times">Ні</option>
+</select>
+<br><br>
+
+<fieldset name="rules" id="rules">
+    <legend>Чи ознайомлені ви з нашими правилами:</legend>
+    <label><input type="checkbox" name="rules" value="return">Правила повернення</label><br>
+    <label><input type="checkbox" name="rules" value="delivery">Правила оплати та доставки</label><br>
+</fieldset>
+<br>
+
+<label for="comments">Ваші ініціали:</label>
+<textarea id="comments" name="comments"></textarea>
+<br><br>
+
+<button type="submit" onclick="save()">Надіслати</button>
+</form>
+<br><br><br>
+<div>
+    <div>
+        <button onclick="showNewest()">Показати новинки</button>
+        <button onclick="showPopular()">Показати популярні тваринки</button>
+        <button onclick="showCheapest()">Показати найдешевші</button>
+    </div>
+</div>
+<script>
+
+    function save() {
+    const animalV = document.getElementById('animal').value;
+    const ageV = document.getElementById("age").querySelectorAll("input[type='radio']:checked");
+    const priceV = document.getElementById('price').value;
+    const purchaseDateV = document.getElementById('purchaseDate').value;
+    const numberV = document.getElementById('number').value;
+    const coursesV = document.getElementById('courses').value;
+    const rulesV = document.getElementById('rules').querySelectorAll("input[name='rules']:checked");
+    const commentsV = document.getElementById('comments').value;
+
+    const res = {
+        animal: animalV,
+        age: ageV,
+        price: priceV,
+        purchaseDate: purchaseDateV,
+        numder: numberV,
+        courses: coursesV,
+        rules: rulesV,
+        comments: commentsV
+    };
+
+    const previous = localStorage.getItem('surveyData');
+
+    let array = [];
+
+    if (previous) {
+      array = JSON.parse(previous);
+    }
+
+    array.push(res);
+    localStorage.setItem('surveyData', JSON.stringify(array));
+
+    alert('Результати збережено.');
+  }
+
+    function showHighValueCars() {
+        var surveyData = JSON.parse(localStorage.getItem('surveyData'));
+        var highValueCars = [];
+        
+        const results = surveyData
+          .filter (data => data.price > 50000)
+          .map (data => data.comments)
+          .join(' ');
+
+        alert(results);
+    }
+
+    function showDieselCars() {
+        var surveyData = JSON.parse(localStorage.getItem('surveyData'));
+
+        const results = surveyData
+          .filter (data => data.courses === '1time')
+          .map (data => data.comments)
+          .join(' ');
+
+        alert(results);
+    }
+
+    function showPersonalCars() {
+        var surveyData = JSON.parse(localStorage.getItem('surveyData'));
+
+        const results = surveyData
+          .filter (data => data.number === 'first')
+          .map (data => data.comments)
+          .join(' ');
+
+        alert(results);
+    }
+</script>
+</body>
+</html>

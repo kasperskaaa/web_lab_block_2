@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Dog lover Quiz</title>
+</head>
+<body>
+    <section class="et-slide" id="form-container">
+        <div class="text-left" id="quiz-container">
+
+        </div>
+    </section>
+    <script>
+
+        testData = {
+  "testName": "Вікторина для покупців",
+  "questions": [
+    {
+      "question": "Чим краще кормити собаку?",
+      "answers": [
+        {
+          "answer": "Всім з людського столу",
+          "isCorrect": false
+        },
+        {
+          "answer": "Якісним кормом",
+          "isCorrect": true
+        },
+        {
+          "answer": "Готувати собаці каші і давати кістки",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Чи потрібно вакцинувати тварин?",
+      "answers": [
+        {
+          "answer": "Ні, вона ж в квартирі живе",
+          "isCorrect": false
+        },
+        {
+          "answer": "Так, навіть якщо живе в квартирі",
+          "isCorrect": true
+        },
+        {
+          "answer": "Хіба як чимось заразиться",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Чи повинна собака відвідувати курси кінолога?",
+      "answers": [
+        {
+          "answer": "Так, обов'язково хоч кілька занять",
+          "isCorrect": true
+        },
+        {
+          "answer": "Ні, вона ж не велика",
+          "isCorrect": false
+        },
+        {
+          "answer": "Ні, я не хочу щоб собака кидалася на людей",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Як вибрати породу собаки?",
+      "answers": [
+        {
+          "answer": "Виходячи з розміру квартири",
+          "isCorrect": true
+        },
+        {
+          "answer": "Виходячи з вподобань",
+          "isCorrect": false
+        },
+        {
+          "answer": "По пораді кума/брата/зятя",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Чи можна на довго залишати собаку одну в квартирі?",
+      "answers": [
+        {
+            "answer": "Так, в мене ж є справи",
+            "isCorrect": false
+        },
+        {
+            "answer": "Старатися уникати довгої відсутності в квартирі",
+            "isCorrect": true
+        },
+        {
+            "answer": "Так, це ж собака",
+            "isCorrect": false
+        }
+      ]
+    }
+  ]
+}
+
+
+const quizContainer = document.getElementById('quiz-container');
+
+function renderQuiz(testData) {
+    const quizQuestions = testData.questions;
+
+    const quizForm = document.createElement('form');
+    quizForm.setAttribute('id', 'quiz-form');
+
+    quizQuestions.forEach((questionObj, questionIndex) => {
+        const questionElement = document.createElement('div');
+        questionElement.classList.add('question');
+        questionElement.innerHTML = `<p>${questionIndex + 1}. ${questionObj.question}</p>`;
+
+        const answers = questionObj.answers;
+        answers.forEach((answerObj, answerIndex) => {
+            const answerElement = document.createElement('div');
+            answerElement.classList.add('answer');
+            answerElement.innerHTML = `
+                <input type="radio" id="question${questionIndex}-answer${answerIndex}" name="question${questionIndex}" value="${answerObj.answer}">
+                <label for="question${questionIndex}-answer${answerIndex}">${answerObj.answer}</label>
+            `;
+            questionElement.appendChild(answerElement);
+        });
+
+        quizForm.appendChild(questionElement);
+    });
+
+    const submitButton = document.createElement('button');
+    submitButton.setAttribute('type', 'submit');
+    submitButton.textContent = 'Відправити';
+    quizForm.appendChild(submitButton);
+
+    quizForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        let correctAnswersCount = 0;
+
+        quizQuestions.forEach((questionObj, questionIndex) => {
+            const selectedAnswer = document.querySelector(`input[name="question${questionIndex}"]:checked`);
+            if (selectedAnswer) {
+                const selectedAnswerIndex = parseInt(selectedAnswer.id.split('-')[1].replace('answer', ''));
+                if (questionObj.answers[selectedAnswerIndex].isCorrect) {
+                    correctAnswersCount++;
+                }
+            }
+        });
+
+        const totalQuestionsCount = quizQuestions.length;
+        const scorePercentage = (correctAnswersCount / totalQuestionsCount) * 100;
+
+        const resultMessage = `Вітаємо, ви на ${scorePercentage}% готові до утримання собаки.`;
+
+        quizContainer.innerHTML = '';
+
+        const resultElement = document.createElement('div');
+        resultElement.textContent = resultMessage;
+
+        quizContainer.appendChild(resultElement);
+    });
+
+    quizContainer.innerHTML = '';
+    quizContainer.appendChild(quizForm);
+}
+
+renderQuiz(testData);
+
+    </script>
+</body>
+</html>

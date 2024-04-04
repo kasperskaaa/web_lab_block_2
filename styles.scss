@@ -1,0 +1,83 @@
+$margin-size: 10px; // Визначаємо змінну для розміру відступу
+
+* {
+    margin: $margin-size;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    color: #ff0000;
+    background-color: #fbc5c5;
+}
+
+.section-container {
+    margin-bottom: 20px;
+    background-color: #ff6666;
+    padding: 10px;
+    border: 10px solid #ff6666;
+}
+
+.block-container {
+    margin-bottom: 10px;
+}
+
+#section1 {
+    background-color: #e6f7ff;
+}
+
+.section-container > div {
+    padding: 5px;
+}
+
+li {
+    margin: 20px;
+}
+
+[href="https://ru.pinterest.com/pin/613193305543242359/"],
+[href="https://ru.pinterest.com/pin/580964420707112234/"],
+[href="https://ru.pinterest.com/pin/116178865381271013/"],
+[href="https://ru.pinterest.com/pin/977633031590230331/"],
+[href="https://ru.pinterest.com/pin/839217711830436833/"] {
+    color: #ff0000;
+    text-decoration: none;
+} 
+
+h2::before {
+    content: "❤ ";
+}
+
+h2,
+h3 {
+    color: #ae0000;
+}
+
+#section1 div p {
+    font-style: italic;
+}
+
+.block-container + br {
+    display: none;
+}
+
+.fadeIn {
+    animation: fadeInAnimation 2s ease-in-out;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.cat-image {
+    animation: slideIn 1s ease-in-out;
+}
+

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Котики</title>
+    <style>
+        img {
+            max-width: 20%;
+            height: auto;
+            display: inline-block;
+            margin: auto;
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Мяу</h1>
+    
+    <div class="menu-toggle">Розділи &#9776;</div>
+
+    <nav>
+        <section class="menu">
+            <div class="menu-item"><a href="#1-cat">Лизь</a></div>
+            <div class="menu-item"><a href="#2-cat">Крутиш</a></div>
+            <div class="menu-item"><a href="#3-cat">Любофф</a></div>
+            <div class="menu-item"><a href="#4-cat">Та, і шо</a></div>
+            <div class="menu-item"><a href="#5-cat">Мілашик</a></div>
+        </section>
+    </nav>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu');
+
+            menuToggle.addEventListener('click', function () {
+            const menu = document.querySelector('.menu');
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        document.querySelector('header').appendChild(menuToggle);
+        });
+    </script>
+
+    <div>
+        <h2>1. Лизь</h2>
+    </div>
+
+    <div class="cat-image" id="1-cat">
+        <img src="images/cat1.jpg" alt="Котик 1">
+    </div>
+
+    <div>
+        <h2>2. Крутиш</h2>
+    </div>
+    
+    <div class="cat-image" id="2-cat">
+        <img src="images/cat2.jpg" alt="Котик 2">
+    </div>
+
+    <div>
+        <h2>3. Любофф</h2>
+    </div>
+
+    <div class="cat-image" id="3-cat">
+        <img src="images/cat3.jpg" alt="Котик 3">
+    </div>
+
+    <div>
+        <h2>4. Та, і шо</h2>
+    </div>
+
+    <div class="cat-image" id="4-cat">
+        <img src="images/cat4.jpg" alt="Котик 4">
+    </div>
+
+    <div>
+        <h2>5. Мілашик</h2>
+    </div>
+
+    <div class="cat-image" id="5-cat">
+        <img src="images/cat5.jpg" alt="Котик 5">
+    </div>
+
+    <div>
+        <h2>Таблиця милоти котиків</h2>
+        <table border="1">
+            <tr>
+                <th> </th>
+                <th>Милота</th>
+                <th>Няшність</th>
+            </tr>
+            <tr>
+                <td>1. Лизь</td>
+                <td>10/10</td>
+                <td>10/10</td>
+            </tr>
+            <tr>
+                <td>2. Крутиш</td>
+                <td>10/10</td>
+                <td>10/10</td>
+            </tr>
+            <tr>
+                <td>3. Любофф</td>
+                <td>10/10</td>
+                <td>10/10</td>
+            </tr>
+            <tr>
+                <td>4. Та, і шо</td>
+                <td>10/10</td>
+                <td>10/10</td>
+            </tr>
+            <tr>
+                <td>5. Мілашик</td>
+                <td>10/10</td>
+                <td>10/10</td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <h2>Зареєструйся щоб побачити більше ;)</h2>
+        <form>
+            <label for="name">Ім'я:</label>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br><br>
+            <label for="message">Повідомлення:</label><br>
+            <textarea id="message" name="message"></textarea><br><br>
+            <input type="submit" value="Відправити">
+        </form>
+    </div>
+
+    <div>
+        <h2>Де можна побачити оригінали котиків</h2>
+        <ul>
+            <li><a href="https://ru.pinterest.com/pin/613193305543242359/">Лизь</a></li>
+            <li><a href="https://ru.pinterest.com/pin/580964420707112234/">Крутиш</a></li>
+            <li><a href="https://ru.pinterest.com/pin/116178865381271013/">Любофф</a></li>
+            <li><a href="https://ru.pinterest.com/pin/977633031590230331/">Та, і шо</a></li>
+            <li><a href="https://ru.pinterest.com/pin/839217711830436833/">Мілашик</a></li>
+        </ul>
+        <h3>Або тут</h3>
+        <ol>
+            <li><a href="https://ru.pinterest.com/pin/613193305543242359/">Лизь</a></li>
+            <li><a href="https://ru.pinterest.com/pin/580964420707112234/">Крутиш</a></li>
+            <li><a href="https://ru.pinterest.com/pin/116178865381271013/">Любофф</a></li>
+            <li><a href="https://ru.pinterest.com/pin/977633031590230331/">Та, і шо</a></li>
+            <li><a href="https://ru.pinterest.com/pin/839217711830436833/">Мілашик</a></li>
+        </ol>
+    </div>
+
+    <div>
+        <h2>Спеціальні символи</h2>
+        <p>Спеціальний символ: &copy;</p>
+    </div>
+
+    
+</body>
+</html>
